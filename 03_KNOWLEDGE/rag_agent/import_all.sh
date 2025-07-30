@@ -7,4 +7,4 @@ orchestrate env activate .venv
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 orchestrate knowledge-bases import -f ${SCRIPT_DIR}/knowledge_base/thai_policy_knowledge_base.yaml
-orchestrate agents import -f ${SCRIPT_DIR}/agents/ibm_agent.yaml
+orchestrate agents import -f ${SCRIPT_DIR}/agents/policy_agent.yaml

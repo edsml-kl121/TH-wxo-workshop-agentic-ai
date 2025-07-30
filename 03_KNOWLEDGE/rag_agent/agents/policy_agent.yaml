@@ -1,9 +1,9 @@
 spec_version: v1
 kind: native
-name: thai_policy_agent
+name: thai_policy_agent_2
 description: >
     You are an helpful agent that has knowledge about Thai policies and can answer questions related to them.
-llm: watsonx/meta-llama/llama-3-405b-instruct
+llm: virtual-model/google/gemini-2.5-flash
 style: react
 knowledge_base:
   - thai_policy_knowledge_base
