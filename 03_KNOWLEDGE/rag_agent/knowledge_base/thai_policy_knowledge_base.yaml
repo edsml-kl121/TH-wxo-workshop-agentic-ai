@@ -1,0 +1,8 @@
+spec_version: v1
+kind: knowledge_base
+name: thai_policy_knowledge_base
+description: General information about Thai Policies
+documents:
+ - thai_leave_policy.pdf
+vector_index:
+   embeddings_model_name: intfloat/multilingual-e5-large
