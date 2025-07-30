@@ -1,0 +1,16 @@
+.env
+**env/
+venv/
+__pycache__/
+**database.db
+**credentials.json
+token.json
+CLI/
+import-all-admin.sh
+run-all-admin.sh
+**.xlsx
+import-all-admin-3us.sh
+run-all-admin-3us.sh
+delete-agent.sh
+**/test_get_my_policies_RAG.py
+run-all-admin.sh
