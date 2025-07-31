@@ -14,3 +14,5 @@ run-all-admin-3us.sh
 delete-agent.sh
 **/test_get_my_policies_RAG.py
 run-all-admin.sh
+03_KNOWLEDGE/openai
+03_KNOWLEDGE/watsonx

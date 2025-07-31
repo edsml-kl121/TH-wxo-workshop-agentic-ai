@@ -5,4 +5,5 @@ description: General information about Thai Policies
 documents:
  - thai_leave_policy.pdf
 vector_index:
-   embeddings_model_name: intfloat/multilingual-e5-large
+   embeddings_model_name: virtual-model/openai/text-embedding-3-large
+
