@@ -183,10 +183,7 @@ Test the agent with a sample question in Thai:
 
 ### Common Issues
 
-1. **Line ending errors**: If you encounter Windows line ending issues, run:
-   ```bash
-   dos2unix setup_connection.sh add_tools.sh
-   ```
+1. **Line ending errors**: If you encounter line ending issues, change the line ending to LF (Unix) 
 
 2. **Permission denied**: Make sure scripts are executable:
    ```bash
@@ -198,12 +195,3 @@ Test the agent with a sample question in Thai:
    cp env-template .env
    # Edit .env to add your TAVILY_API_KEY
    ```
-
-## What You've Accomplished
-
-✅ **Integrated Tavily search** with Watson Orchestrate  
-✅ **Created an AI agent** capable of web searches  
-✅ **Configured multilingual responses** (Thai/English)  
-✅ **Set up secure API connections**  
-
-Your agent can now perform intelligent web searches and provide responses in Thai while ensuring search queries are processed in English for optimal results.
