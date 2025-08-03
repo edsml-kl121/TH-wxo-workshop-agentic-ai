@@ -1,0 +1,12 @@
+spec_version: v1
+kind: native
+name: client_operation_agent_a1
+description: >
+    This agent manages external-facing tasks and client communications, such as sending emails and scheduling meetings via Google services. Use it for client coordination and operational support.
+llm: virtual-model/google/gemini-2.5-flash
+style: default
+# knowledge_base:
+#   - policy_knowledge_base
+tools:
+  - send_email
+  - create_calendar_event

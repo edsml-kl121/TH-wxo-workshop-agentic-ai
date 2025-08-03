@@ -1,0 +1,20 @@
+spec_version: v1
+kind: knowledge_base
+name: policy_knowledge_base
+description: This is an internal company policy document that establishes standardized guidelines for product returns and payment procedures for both individual and corporate customers, serving as operational reference for sales and finance teams.
+documents:
+ - policy.docx
+vector_index:
+   embeddings_model_name: virtual-model/google/gemini-embedding-001
+   # embeddings_model_name: virtual-model/openai/text-embedding-3-small
+conversational_search_tool:
+   generation:
+      prompt_instruction: Custom instruction
+      generated_response_length: Verbose
+   confidence_thresholds:
+      retrieval_confidence_threshold: Lowest
+      response_confidence_threshold: Lowest
+   query_rewrite:
+      enabled: True
+   citations:
+      citations_shown: -1

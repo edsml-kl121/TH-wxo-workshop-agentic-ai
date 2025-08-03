@@ -1,3 +1,5 @@
+## Testing
+
 ```
 curl -X POST "http://localhost:8000/send_gmail" \
 -H "Content-Type: application/json" \
@@ -18,4 +20,20 @@ curl -X POST "http://localhost:8000/create_calendar_event" \
   "time": "2-4pm",
   "attendees": ["Kandanai.Leenutaphong@ibm.com"]
 }'
+```
+
+
+## Setup
+
+```
+1. Create a gmail.
+e.g.
+demowxo27@gmail.com
+
+2. Register via. Google cloud Platform (Login with the same email)
+3. Create a new project called wxo-demo
+4. Search APIs & Services (in library) and enable Gmail API & Google Calendar API, Generative Language API
+5. Google Auth Platform -> overview -> project configuration -> add your email in. e.g. demowxo27@gmail.com
+6. Google Auth Platform -> Clients -> Create client -> choose DESKTOP
+7. Audience -> publish app
 ```

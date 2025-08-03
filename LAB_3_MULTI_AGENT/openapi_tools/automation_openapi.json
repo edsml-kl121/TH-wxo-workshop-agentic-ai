@@ -14,7 +14,7 @@
   "paths": {
     "/": {
       "get": {
-        "summary": "API Information",
+        "summary": "API_information",
         "description": "Get basic information about the Google Automation API",
         "operationId": "getApiInfo",
         "responses": {
@@ -60,9 +60,9 @@
     },
     "/send_gmail": {
       "post": {
-        "summary": "Send Gmail Email",
+        "summary": "send_email",
         "description": "Send email via Gmail with support for CC and BCC recipients",
-        "operationId": "sendGmail",
+        "operationId": "send_email",
         "requestBody": {
           "required": true,
           "content": {
@@ -109,9 +109,9 @@
     },
     "/create_calendar_event": {
       "post": {
-        "summary": "Create Calendar Event",
+        "summary": "create_calendar_event",
         "description": "Create Google Calendar event with Google Meet integration",
-        "operationId": "createCalendarEvent",
+        "operationId": "create_calendar_event",
         "requestBody": {
           "required": true,
           "content": {
