@@ -10,3 +10,4 @@ style: default
 tools:
   - get_policies
   - get_products
+  - mcp-travily-adk:tavily-search
