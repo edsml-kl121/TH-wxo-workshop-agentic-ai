@@ -1,0 +1,34 @@
+[
+  {
+    "furniture_id": "FU-009",
+    "furniture_name": "เก้าอี้รับประทานอาหารซอฟี",
+    "quantity": 1,
+    "order_date": "2024-12-11",
+    "location": "เพชรบุรี",
+    "status": "delivered"
+  },
+  {
+    "furniture_id": "FU-001",
+    "furniture_name": "โต๊ะมอนิกา",
+    "quantity": 1,
+    "order_date": "2024-12-12",
+    "location": "ตาก",
+    "status": "pending"
+  },
+  {
+    "furniture_id": "FU-004",
+    "furniture_name": "โซฟาเลโอนาร์โด",
+    "quantity": 1,
+    "order_date": "2024-12-13",
+    "location": "ยะลา",
+    "status": "cancelled"
+  },
+  {
+    "furniture_id": "FU-011",
+    "furniture_name": "เก้าอี้แดงคาร์มิน",
+    "quantity": 2,
+    "order_date": "2024-12-14",
+    "location": "นครศรีธรรมราช",
+    "status": "processing"
+  }
+]
