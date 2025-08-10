@@ -22,6 +22,15 @@ curl -X POST "http://localhost:8000/create_calendar_event" \
 }'
 ```
 
+```
+curl -X POST "http://localhost:8000/place_order" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "product_name": "tablet",
+    "quantity": 3
+  }' | jq
+```
+
 
 ## Setup
 
@@ -37,3 +46,4 @@ demowxo27@gmail.com
 6. Google Auth Platform -> Clients -> Create client -> choose DESKTOP
 7. Audience -> publish app
 ```
+

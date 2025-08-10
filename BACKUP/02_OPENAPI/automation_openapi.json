@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Google Automation API",
-    "description": "Gmail & Calendar automation API for sending emails and creating calendar events with Google Meet integration",
+    "description": "Gmail & Calendar & Sheets automation API for sending emails, creating calendar events with Google Meet integration, and placing orders",
     "version": "1.0.0"
   },
   "servers": [
@@ -27,7 +27,7 @@
                   "properties": {
                     "message": {
                       "type": "string",
-                      "example": "Gmail & Calendar FastAPI Service"
+                      "example": "Gmail & Calendar & Sheets FastAPI Service"
                     },
                     "version": {
                       "type": "string",
@@ -43,6 +43,10 @@
                         "create_calendar_event": {
                           "type": "string",
                           "example": "POST /create_calendar_event"
+                        },
+                        "place_order": {
+                          "type": "string",
+                          "example": "POST /place_order"
                         }
                       }
                     },
@@ -129,6 +133,55 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/CalendarEventResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/place_order": {
+      "post": {
+        "summary": "place_order",
+        "description": "Place an order and save it to Google Sheets with automatic customer assignment",
+        "operationId": "placeOrder",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlaceOrderRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Order placed successfully or error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlaceOrderResponse"
                 }
               }
             }
@@ -374,6 +427,93 @@
                 "format": "uri",
                 "description": "Mock Google Meet link (only in error status)",
                 "example": "https://meet.google.com/mock-link-1234"
+              }
+            }
+          }
+        },
+        "required": ["status", "message", "data"]
+      },
+      "PlaceOrderRequest": {
+        "type": "object",
+        "properties": {
+          "product_name": {
+            "type": "string",
+            "description": "Product name",
+            "example": "laptop"
+          },
+          "quantity": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Quantity ordered (must be greater than 0)",
+            "example": 2
+          }
+        },
+        "required": ["product_name", "quantity"]
+      },
+      "PlaceOrderResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": ["success", "partial_success", "error"],
+            "description": "Response status",
+            "example": "success"
+          },
+          "message": {
+            "type": "string",
+            "description": "Response message",
+            "example": "Order placed successfully"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "order_id": {
+                "type": "string",
+                "description": "Generated order ID with timestamp",
+                "example": "ORD-20250807143022"
+              },
+              "customer_name": {
+                "type": "string",
+                "description": "Randomly assigned mock customer name",
+                "example": "Jane Smith"
+              },
+              "product_name": {
+                "type": "string",
+                "description": "Product name from request",
+                "example": "laptop"
+              },
+              "quantity": {
+                "type": "integer",
+                "description": "Quantity from request",
+                "example": 2
+              },
+              "customer_email": {
+                "type": "string",
+                "format": "email",
+                "description": "Mock customer email address",
+                "example": "jane.smith@email.com"
+              },
+              "order_date": {
+                "type": "string",
+                "format": "date-time",
+                "description": "Order placement timestamp",
+                "example": "2025-08-07 14:30:22"
+              },
+              "sheets_status": {
+                "type": "string",
+                "enum": ["success", "error"],
+                "description": "Google Sheets save status",
+                "example": "success"
+              },
+              "sheets_error": {
+                "type": "string",
+                "description": "Google Sheets error details (only if sheets_status is error)",
+                "nullable": true,
+                "example": null
+              },
+              "error": {
+                "type": "string",
+                "description": "General error details (only in error status)"
               }
             }
           }

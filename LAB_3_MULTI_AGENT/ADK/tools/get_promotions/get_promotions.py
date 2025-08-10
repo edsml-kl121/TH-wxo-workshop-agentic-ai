@@ -1,0 +1,137 @@
+from ibm_watsonx_orchestrate.agent_builder.tools import tool
+
+@tool
+def get_promotions() -> str:
+    """
+    ดึงข้อมูลโปรโมชั่นและส่วนลดที่มีอยู่ทั้งหมดสำหรับเฟอร์นิเจอร์
+
+    This tool returns a comprehensive list of active promotions and discount codes 
+    available for furniture purchases. It includes:
+    - Promotion ID and title
+    - Discount percentage or fixed amount
+    - Conditions and requirements (in Thai)
+    - Applicable categories or specific products
+    - Valid date ranges
+    - Usage limits and current status
+
+    Types of promotions available:
+    - Category-specific discounts (chairs, tables, beds, etc.)
+    - New customer welcome offers
+    - Product-specific deals
+    - Minimum purchase amount rewards
+    - Bundle discounts for multiple items
+    - Special occasion sales (weekends, student discounts)
+    - Free shipping promotions
+
+    The data is returned as a JSON-formatted string containing 9 active promotions.
+
+    :returns: A JSON string containing a list of active furniture promotions with 
+              Thai conditions, discount details, and validity periods.
+    """
+    try:
+        promotion_data = """\
+[
+  {
+    "id": "CHAIRLOVER30",
+    "title": "Chair Lover Special",
+    "discount_percentage": 30,
+    "condition": "สามารถใช้ได้กับเก้าอี้ทุกรุ่น",
+    "applicable_category": ["เก้าอี้"],
+    "valid_from": "2024-11-01",
+    "valid_until": "2026-12-31",
+    "usage_limit": 100,
+    "status": "active"
+  },
+  {
+    "id": "NEWBIE10",
+    "title": "Welcome New Customer",
+    "discount_percentage": 10,
+    "condition": "สำหรับลูกค้าใหม่เท่านั้น",
+    "applicable_category": ["โต๊ะ","เก้าอี้", "ตู้", "โซฟา", "ชั้น", "เตียง"],
+    "valid_from": "2024-11-01",
+    "valid_until": "2026-03-31",
+    "usage_limit": 500,
+    "status": "active"
+  },
+  {
+    "id": "SCARLET20",
+    "title": "Red Scarlet Exclusive",
+    "discount_percentage": 20,
+    "condition": "ใช้ได้เฉพาะเก้าอี้แดงสการ์เล็ตเท่านั้น",
+    "applicable_products": ["FU-012"],
+    "valid_from": "2024-12-01",
+    "valid_until": "2026-12-25",
+    "usage_limit": 50,
+    "status": "active"
+  },
+  {
+    "id": "BIG50K",
+    "title": "Big Spender Reward",
+    "discount_amount": 5000,
+    "condition": "ซื้อครบ 50,000 บาท ลดทันที 5,000 บาท",
+    "applicable_category": ["โต๊ะ", "ตู้", "โซฟา", "ชั้น", "เตียง"],
+    "valid_from": "2024-11-15",
+    "valid_until": "2026-01-15",
+    "usage_limit": 200,
+    "status": "active"
+  },
+  {
+    "id": "BEDROOM25",
+    "title": "Bedroom Makeover",
+    "discount_percentage": 25,
+    "condition": "ใช้ได้กับเตียง ตู้เสื้อผ้า และโต๊ะเครื่องแป้ง",
+    "applicable_products": ["FU-003", "FU-006", "FU-010"],
+    "valid_from": "2024-12-01",
+    "valid_until": "2025-02-28",
+    "usage_limit": 75,
+    "status": "active"
+  },
+  {
+    "id": "FREESHIP",
+    "title": "Free Delivery Special",
+    "discount_amount": 1500,
+    "condition": "ฟรีค่าจัดส่ง สำหรับการสั่งซื้อครั้งแรกของสมาชิก VIP",
+    "applicable_category": ["โต๊ะ", "เก้าอี้", "ตู้", "โซฟา", "ชั้น", "เตียง"],
+    "valid_from": "2024-11-01",
+    "valid_until": "2025-06-30",
+    "usage_limit": 300,
+    "status": "active"
+  },
+  {
+    "id": "WEEKEND15",
+    "title": "Weekend Flash Sale",
+    "discount_percentage": 15,
+    "condition": "ใช้ได้เฉพาะวันเสาร์-อาทิตย์ กับโซฟาและโต๊ะกาแฟ",
+    "applicable_products": ["FU-004", "FU-007"],
+    "valid_from": "2024-11-02",
+    "valid_until": "2025-12-31",
+    "usage_limit": 150,
+    "status": "active"
+  },
+  {
+    "id": "STUDENT12",
+    "title": "Student Discount",
+    "discount_percentage": 12,
+    "condition": "ส่วนลดพิเศษสำหรับนักเรียน นักศึกษา (ต้องแสดงบัตรนักเรียน)",
+    "applicable_category": ["โต๊ะ", "ชั้น"],
+    "valid_from": "2024-11-01",
+    "valid_until": "2025-05-31",
+    "usage_limit": 400,
+    "status": "active"
+  },
+  {
+    "id": "BUNDLE35",
+    "title": "Complete Set Bonus",
+    "discount_percentage": 35,
+    "condition": "ซื้อครบ 3 ชิ้นขึ้นไปในคำสั่งซื้อเดียวกัน",
+    "applicable_category": ["โต๊ะ", "ชั้น"],
+    "valid_from": "2024-11-20",
+    "valid_until": "2026-01-20",
+    "min_quantity": 3,
+    "usage_limit": 80,
+    "status": "active"
+  }
+]"""
+        return promotion_data
+    except Exception as e:
+        return f"❌ ไม่สามารถดึงข้อมูลการนัดหมายได้: {str(e)}"

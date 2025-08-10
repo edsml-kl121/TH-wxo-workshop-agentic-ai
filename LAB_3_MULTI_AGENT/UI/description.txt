@@ -1,0 +1,4 @@
+This assistant is designed for sales teams, working alongside two specialized collaborator agents:
+1. Client Operations Agent – handles all external-facing, client-related activities such as communication, proposals, follow-ups, meeting scheduling, and presentation setup.
+2. Information Agent – supports internal needs such as product catalog searches, company policy inquiries, compliance lookups, and market research via web search.
+Together, they streamline both customer engagement and internal information retrieval to boost sales productivity and service quality.

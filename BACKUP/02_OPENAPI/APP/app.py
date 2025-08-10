@@ -10,8 +10,9 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
-from googleapiclient.discovery import build
 from dotenv import load_dotenv
+import gspread
+from googleapiclient.discovery import build
 
 # Load environment variables
 env_path = os.path.join(os.path.dirname(__file__), ".env")
@@ -32,6 +33,11 @@ class CalendarEventRequest(BaseModel):
     date: str = Field(..., description="Event date in YYYY-MM-DD format")
     time: str = Field(..., description="Event time (e.g., '18:00', '6pm', '6-8pm')")
     attendees: List[str] = Field(..., description="List of attendee email addresses")
+
+class PlaceOrderRequest(BaseModel):
+    product_name: str = Field(..., description="Product name")
+    quantity: int = Field(..., description="Quantity ordered", gt=0)
+
 
 # Character encoding helper functions
 def decode_unicode_escapes(text):
@@ -403,6 +409,77 @@ def _create_calendar_event(title, date, time, attendees):
     except Exception as e:
         return {'success': False, 'error': str(e)}
 
+SHEETS_SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
+
+def get_sheets_credentials():
+    """
+    Get OAuth2 credentials for Google Sheets
+    Similar to Gmail authentication - supports both JSON string and file path
+    """
+    try:
+        # Get token from environment variable (similar to Gmail pattern)
+        token_json = os.environ.get('GGSHEETS_TOKEN_JSON')
+        if not token_json:
+            raise ValueError("GGSHEETS_TOKEN_JSON environment variable not found")
+
+        # Handle both JSON string and file path
+        if token_json.startswith('{'):
+            # It's a JSON string directly
+            token_data = json.loads(token_json)
+            creds = Credentials.from_authorized_user_info(token_data, SHEETS_SCOPES)
+        else:
+            # It's a file path
+            if not os.path.exists(token_json):
+                raise FileNotFoundError(f"Token file not found at: {token_json}")
+            
+            with open(token_json, 'r') as f:
+                token_data = json.load(f)
+            creds = Credentials.from_authorized_user_info(token_data, SHEETS_SCOPES)
+        
+        # Check if credentials need refresh
+        if creds.expired and creds.refresh_token:
+            print("Refreshing expired Google Sheets token...")
+            creds.refresh(Request())
+            
+            # If token was loaded from file, save the refreshed token back
+            if not token_json.startswith('{') and os.path.exists(token_json):
+                with open(token_json, 'w') as token:
+                    token.write(creds.to_json())
+                print("Refreshed token saved back to file.")
+        
+        if not creds.valid:
+            raise ValueError("Invalid Google Sheets credentials")
+        
+        return creds
+        
+    except Exception as e:
+        raise Exception(f"Google Sheets authentication failed: {e}")
+
+
+# Google Sheets functionality
+def append_to_sheets(data_rows):
+    """
+    Append data to Google Sheets using pre-generated token
+    
+    Args:
+        data_rows (list): List of lists containing row data
+    """
+    try:
+        creds = get_sheets_credentials()
+        client = gspread.authorize(creds)
+        
+        # Use spreadsheet ID from environment variables
+        sheet_id = os.getenv("GGSHEETS_ID")
+        if not sheet_id:
+            raise ValueError("GGSHEETS_ID environment variable not found")
+        
+        sheet = client.open_by_key(sheet_id).sheet1
+        sheet.append_rows(data_rows)
+        return True
+    except Exception as e:
+        raise Exception(f"Failed to append to Google Sheets: {str(e)}")
+    
+
 # API Routes
 @app.post("/send_gmail")
 async def send_gmail(email_request: EmailRequest):
@@ -506,6 +583,74 @@ async def create_calendar_event(event_request: CalendarEventRequest):
                 "attendees": event_request.attendees,
                 "error": str(e),
                 "simulation_link": "https://meet.google.com/mock-link-1234"
+            }
+        }
+
+@app.post("/place_order")
+async def place_order(order_request: PlaceOrderRequest):
+    """
+    Place an order and save it to Google Sheets
+    """
+    try:
+        # Mock customer data only
+        mock_customers = [
+            {"name": "John Doe", "email": "john.doe@email.com"},
+            # {"name": "Jane Smith", "email": "jane.smith@email.com"},
+            # {"name": "Mike Johnson", "email": "mike.johnson@email.com"},
+            # {"name": "Sarah Wilson", "email": "sarah.wilson@email.com"},
+            # {"name": "David Brown", "email": "david.brown@email.com"}
+        ]
+        
+        # Generate random mock data
+        import random
+        selected_customer = random.choice(mock_customers)
+        
+        # Generate order ID
+        order_id = f"ORD-{datetime.now().strftime('%Y%m%d%H%M%S')}"
+        
+        # Prepare data for Google Sheets
+        # Only include: Order ID, Date, Product, Quantity
+        order_data = [
+            [
+                order_id,
+                datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                decode_unicode_escapes(order_request.product_name),
+                order_request.quantity
+            ]
+        ]
+        
+        # Append to Google Sheets
+        try:
+            append_to_sheets(order_data)
+            sheets_status = "success"
+            sheets_error = None
+        except Exception as sheets_error:
+            sheets_status = "error"
+            sheets_error = str(sheets_error)
+        
+        return {
+            "status": "success" if sheets_status == "success" else "partial_success",
+            "message": "Order placed successfully" if sheets_status == "success" else "Order processed but failed to save to sheets",
+            "data": {
+                "order_id": order_id,
+                # "customer_name": selected_customer["name"],
+                "product_name": decode_unicode_escapes(order_request.product_name),
+                "quantity": order_request.quantity,
+                # "customer_email": selected_customer["email"],
+                "order_date": datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                "sheets_status": sheets_status,
+                "sheets_error": sheets_error
+            }
+        }
+
+    except Exception as e:
+        return {
+            "status": "error",
+            "message": "Failed to place order",
+            "data": {
+                "product_name": decode_unicode_escapes(order_request.product_name),
+                "quantity": order_request.quantity,
+                "error": str(e)
             }
         }
 
