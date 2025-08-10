@@ -12,11 +12,11 @@ An agent like above will be created from the `.yaml` file and python tools in `t
 Please test the `information_agent` using the **example queries** below:  
 
 
-a. **Test get_products**: 
+- **Test get_products**: 
 ร้านนี้มีเก้าอี้สีแดงขายบ้างไหม
-b. **Test get_promotions**: 
+- **Test get_promotions**: 
 มี voucher อะไรที่ใช้ลดราคาสินค้านี้ได้บ้าง
-c. **Test get_status**: 
+- **Test get_status**: 
 ที่เคยสั่งเก้าอี้สีแดงไว้ ตอนนนี้อยู่ที่ไหนแล้ว
 
 ### 3. Adding Tavily MCP server
@@ -88,7 +88,7 @@ Return to the import overlay and activate only the `mcp-travily-adk:tavily-searc
 
 Now you can test the tool with:
 **web_search**: 
-ลองค้นหาหน่อยว่าต้องใช้เวลานานแค่ไหนในการส่งสินค้าทางรถจากนครศรีธรรมราชมากรุงเทพ
+- ลองค้นหาหน่อยว่าต้องใช้เวลานานแค่ไหนในการส่งสินค้าทางรถจากนครศรีธรรมราชมากรุงเทพ
 
 ## Troubleshooting
 
