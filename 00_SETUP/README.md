@@ -1,3 +1,30 @@
+### Registering and provisioning watsonx Orchestrate Free Trial
+
+1. Please access the following link:
+https://www.ibm.com/products/watsonx-orchestrate and click on `Try it for free`
+![alt text](images/image.png)
+
+2. please fill in your email address can be personal email address and other information to register for watsonx Orchestrate
+![alt text](images/image-1.png)
+
+
+3. After registering you should get a code to your email.
+![alt text](images/image-2.png)
+
+4. Please add the code to register for free trial
+![alt text](images/image-3.png)
+
+5. Once registered please deploy the trial in `us-east` region
+![alt text](images/image-4.png)
+
+![alt text](images/image-5.png)
+
+6. You will be directed to: https://dl.watson-orchestrate.ibm.com/. Afterwards please, login with the IBMid and password you signed up with.
+![alt text](images/image-7.png)
+
+7. Your instance have been successfully provisioned once you landed here.
+![alt text](images/image-8.png)
+
 ### Installation of dependencies
 Install and create a virtual environment from `requirement.txt`. Ensure your python version is 3.11
 
@@ -11,7 +38,7 @@ pip install -r requirement.txt
 
 ### Activating watsonx Orchestrate environment
 Assuming your are running watsonx Orchestrate on AWS Cloud (Saas),
-Please get your credentials from ![alt text](images/image.png)
+Please get your credentials from ![alt text](images/image_n.png)
 ```
 orchestrate env list
 orchestrate env add -n trial-env -u <Service instance URL>
