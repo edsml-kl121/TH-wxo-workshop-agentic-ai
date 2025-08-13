@@ -16,7 +16,7 @@
       "get": {
         "summary": "API Information",
         "description": "Get basic information about the Google Automation API",
-        "operationId": "get_api_info",
+        "operationId": "getApiInfo",
         "responses": {
           "200": {
             "description": "API information and available endpoints",
@@ -66,7 +66,7 @@
       "post": {
         "summary": "send_email",
         "description": "Send email via Gmail with support for CC and BCC recipients",
-        "operationId": "send_email",
+        "operationId": "sendGmail",
         "requestBody": {
           "required": true,
           "content": {
@@ -115,7 +115,7 @@
       "post": {
         "summary": "create_calendar_event",
         "description": "Create Google Calendar event with Google Meet integration",
-        "operationId": "create_calendar_event",
+        "operationId": "createCalendarEvent",
         "requestBody": {
           "required": true,
           "content": {
@@ -213,7 +213,7 @@
       "get": {
         "summary": "Health Check",
         "description": "Check the health status of the API service",
-        "operationId": "health_check",
+        "operationId": "healthCheck",
         "responses": {
           "200": {
             "description": "Service is healthy",
@@ -441,6 +441,11 @@
             "description": "Product name",
             "example": "laptop"
           },
+          "voucher_code": {
+            "type": "string",
+            "description": "voucher code",
+            "example": "CHAIRLOVER30"
+          },
           "quantity": {
             "type": "integer",
             "minimum": 1,
@@ -448,7 +453,7 @@
             "example": 2
           }
         },
-        "required": ["product_name", "quantity"]
+        "required": ["product_name", "voucher_code", "quantity"]
       },
       "PlaceOrderResponse": {
         "type": "object",

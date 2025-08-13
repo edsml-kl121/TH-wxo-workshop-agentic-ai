@@ -27,6 +27,7 @@ curl -X POST "http://localhost:8000/place_order" \
   -H "Content-Type: application/json" \
   -d '{
     "product_name": "tablet",
+    "voucher_code": "ABC_D",
     "quantity": 3
   }' | jq
 ```

@@ -2,7 +2,7 @@ spec_version: v1
 kind: native
 name: information_agent_a2
 description: >
-    This agent handles internal tasks such as product information lookup, promotion or voucher lookup, getting the status of the product, and websearch to research support. It is not client-facing but works behind the scenes to provide accurate internal knowledge for decision-making and client support.
+    This agent handles internal tasks such as product information lookup, promotion or voucher lookup, getting the status of all products, and websearch to research support. It is not client-facing but works behind the scenes to provide accurate internal knowledge for decision-making and client support.
 llm: virtual-model/google/gemini-2.5-flash
 # llm: watsonx/meta-llama/llama-3-2-90b-vision-instruct
 # llm: watsonx/meta-llama/llama-3-405b-instruct

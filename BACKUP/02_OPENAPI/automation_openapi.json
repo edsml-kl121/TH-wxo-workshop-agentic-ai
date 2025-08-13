@@ -164,7 +164,7 @@
       "post": {
         "summary": "place_order",
         "description": "Place an order and save it to Google Sheets with automatic customer assignment",
-        "operationId": "placeOrder",
+        "operationId": "place_order",
         "requestBody": {
           "required": true,
           "content": {
@@ -441,6 +441,11 @@
             "description": "Product name",
             "example": "laptop"
           },
+          "voucher_code": {
+            "type": "string",
+            "description": "voucher code",
+            "example": "CHAIRLOVER30"
+          },
           "quantity": {
             "type": "integer",
             "minimum": 1,
@@ -448,7 +453,7 @@
             "example": 2
           }
         },
-        "required": ["product_name", "quantity"]
+        "required": ["product_name", "voucher_code", "quantity"]
       },
       "PlaceOrderResponse": {
         "type": "object",

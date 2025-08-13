@@ -20,7 +20,7 @@ You should see that the tools have been added.
 
 - สวัสดีครับช่วยส่งอีเมลหา `replace_with_your_email` มีหัวข้อเกี่ยวกับ "self introduction" และเนื้อหาคือ "Hello how are you"
 - ช่วยยิงนัดกับ `replace_with_your_email` หน่อยวันที่ 11 ธันวาคม 2025, 11:00-12:00 ว่า "Self Introduction"
-- ช่วยสั่งสินค้า 'ABC' จำนวน 1 ชิ้น
+- ช่วยสั่งสินค้า 'ABC' จำนวน 1 ชิ้น ด้วย voucher ABCD
 
 
 

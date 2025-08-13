@@ -36,6 +36,7 @@ class CalendarEventRequest(BaseModel):
 
 class PlaceOrderRequest(BaseModel):
     product_name: str = Field(..., description="Product name")
+    voucher_code: str = Field(..., description="Voucher Code")
     quantity: int = Field(..., description="Quantity ordered", gt=0)
 
 
@@ -615,6 +616,7 @@ async def place_order(order_request: PlaceOrderRequest):
                 order_id,
                 datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
                 decode_unicode_escapes(order_request.product_name),
+                decode_unicode_escapes(order_request.voucher_code),
                 order_request.quantity
             ]
         ]
