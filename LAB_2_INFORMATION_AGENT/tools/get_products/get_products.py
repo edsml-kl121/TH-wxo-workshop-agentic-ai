@@ -3,7 +3,7 @@ from ibm_watsonx_orchestrate.agent_builder.tools import tool
 @tool
 def get_products() -> str:
     """
-    ดึงข้อมูลรายการเฟอร์นิเจอร์ที่มีอยู่ทั้งหมด รวมถึงชื่อสินค้า รายละเอียด ราคา และหมวดหมู่
+    ดึงข้อมูลรายการเฟอร์นิเจอร์ที่มีอยู่ทั้งหมด รวมถึงชื่อสินค้า รายละเอียดสินค้า(เช่น วัสดุ, สี, การใช้งาน) ราคา และหมวดหมู่
 
     This tool returns a comprehensive catalog of furniture products available in the store.
     It includes Thai furniture items with the following information:
