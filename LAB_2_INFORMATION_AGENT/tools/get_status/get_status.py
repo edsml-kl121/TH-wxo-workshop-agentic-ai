@@ -3,30 +3,19 @@ from ibm_watsonx_orchestrate.agent_builder.tools import tool
 @tool
 def get_status() -> str:
     """
-    ดึงข้อมูลโปรโมชั่นและส่วนลดที่มีอยู่ทั้งหมดสำหรับเฟอร์นิเจอร์
+    ดึงสถานะคำสั่งซื้อเฟอร์นิเจอร์
 
-    This tool returns a comprehensive list of active promotions and discount codes 
-    available for furniture purchases. It includes:
-    - Promotion ID and title
-    - Discount percentage or fixed amount
-    - Conditions and requirements (in Thai)
-    - Applicable categories or specific products
-    - Valid date ranges
-    - Usage limits and current status
+    This tool returns the current status of furniture orders, including details such as:
+    - Furniture ID and name
+    - Quantity ordered
+    - Order date
+    - Delivery location
+    - Current order status (e.g., delivered, pending, cancelled, processing)
 
-    Types of promotions available:
-    - Category-specific discounts (chairs, tables, beds, etc.)
-    - New customer welcome offers
-    - Product-specific deals
-    - Minimum purchase amount rewards
-    - Bundle discounts for multiple items
-    - Special occasion sales (weekends, student discounts)
-    - Free shipping promotions
+    The data is returned as a JSON-formatted string containing multiple orders.
 
-    The data is returned as a JSON-formatted string containing 9 active promotions.
-
-    :returns: A JSON string containing a list of active furniture promotions with 
-              Thai conditions, discount details, and validity periods.
+    :returns: A JSON string containing a list of furniture orders with their details
+              and current status.
     """
     try:
         status_data = """\
