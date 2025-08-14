@@ -1,19 +1,19 @@
 spec_version: v1
 style: default
-name: sales_multi_agent
+name: customer_multi_agent
 llm: virtual-model/google/gemini-2.5-flash
 # llm: watsonx/meta-llama/llama-3-2-90b-vision-instruct
 # llm: watsonx/meta-llama/llama-3-405b-instruct
 
 description: >
-  This assistant is designed for sales teams, working alongside two specialized collaborator
+  This assistant is designed for customer, working alongside two specialized collaborator
   agents:
   1) Client Operations Agent – handles all external-facing, client-related activities such as
      communication, proposals, follow-ups, meeting scheduling, and presentation setup.
   2) Information Agent – supports internal needs such as product catalog searches, company policy
      inquiries, compliance lookups, and market research via web search.
   Together, they streamline both customer engagement and internal information retrieval to boost
-  sales productivity and service quality.
+  customer productivity and service quality.
 
   Tool–Input Overview (by tool):
     - send_email (Client Operations Agent)

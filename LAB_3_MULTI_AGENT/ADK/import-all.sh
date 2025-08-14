@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -x
 
-orchestrate env activate TZ-37
+orchestrate env activate trial-env
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 orchestrate tools import -k openapi -f "${SCRIPT_DIR}/openapi_tools/automation_openapi.json"
