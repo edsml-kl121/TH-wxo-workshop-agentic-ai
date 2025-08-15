@@ -1,12 +1,14 @@
 # TH-wxo-workshop-agentic-ai
 
 Hands-on labs to build and orchestrate AI agents for sales/support use cases. The workshop is organized into three incremental labs:
+
+You **must** complete **00_SETUP** before attending the hands on lab.
 - **00_SETUP** - registering for watsonx Orchestrate free trial and compulsory setup.
+
+These labs will be completed **during the hands on lab**
 - **LAB_1_CLIENT_OPERATIONS_AGENT** – build a client-facing agent for emails, proposals, and scheduling.  
 - **LAB_2_INFORMATION_AGENT** – build an internal information/retrieval agent (catalog/policy lookups, web search).  
 - **LAB_3_MULTI_AGENT** – compose both into a supervised multi-agent workflow.
-
-> Repo layout: `00_SETUP/`, `LAB_1_CLIENT_OPERATIONS_AGENT/`, `LAB_2_INFORMATION_AGENT/`, `LAB_3_MULTI_AGENT/`, `requirement.txt`.
 
 ---
 
