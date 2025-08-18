@@ -15,4 +15,4 @@ delete-agent.sh
 **/test_get_my_policies_RAG.py
 run-all-admin.sh
 CLI/
-ADMIN/
+**.json
