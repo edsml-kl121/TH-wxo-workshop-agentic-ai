@@ -13,4 +13,9 @@ run-all-admin-3us.sh
 delete-agent.sh
 **/test_get_my_policies_RAG.py
 run-all-admin.sh
-**.json
+**/calendar_token.json
+**/credentials_26.json
+**/credentials_27.json
+**/ggsheet_token.json
+**/gmail_token.json
+**.DS_Store

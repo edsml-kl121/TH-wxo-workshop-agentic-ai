@@ -1,0 +1,443 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Furniture Store API",
+    "version": "3.0.0",
+    "description": "A comprehensive API for managing furniture store operations including product catalog, promotions, and order tracking. This API provides access to furniture inventory, active promotions with Thai language support, and real-time order status updates.",
+    "contact": {
+      "name": "Furniture Store API Support",
+      "email": "api-support@furniturestore.com",
+      "url": "https://furniturestore.com/support"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    },
+    "termsOfService": "https://furniturestore.com/terms"
+  },
+  "servers": [
+    {
+      "url": "https://information-agent.1u1bpgsnsvuw.us-south.codeengine.appdomain.cloud",
+      "description": "API server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "general",
+      "description": "General API information and health checks"
+    },
+    {
+      "name": "promotions",
+      "description": "Manage furniture promotions and discount codes"
+    },
+    {
+      "name": "products",
+      "description": "Furniture product catalog and inventory"
+    },
+    {
+      "name": "orders",
+      "description": "Order management and status tracking"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "tags": ["general"],
+        "summary": "API Health Check",
+        "description": "Returns basic API information and health status",
+        "operationId": "root__get",
+        "responses": {
+          "200": {
+            "description": "API is healthy and operational",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Furniture Store API"
+                    },
+                    "version": {
+                      "type": "string",
+                      "example": "3.0.0"
+                    },
+                    "status": {
+                      "type": "string",
+                      "example": "healthy"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/promotions": {
+      "post": {
+        "tags": ["promotions"],
+        "summary": "get_promotions",
+        "description": "Retrieve all available furniture promotions and discount codes.\n\n**Features:**\n- Active promotion codes with Thai descriptions\n- Percentage and fixed amount discounts\n- Category-specific and product-specific offers\n- Date range validity and usage limits\n- Student discounts and VIP member benefits\n\n**Promotion Types:**\n- Category discounts (chairs, tables, beds, etc.)\n- New customer welcome offers\n- Bundle deals for multiple items\n- Weekend flash sales\n- Free shipping promotions",
+        "operationId": "get_all_promotions_promotions_post",
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved all active promotions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PromotionsResponse"
+                },
+                "examples": {
+                  "sample_promotions": {
+                    "summary": "Sample promotion data",
+                    "value": {
+                      "promotions": [
+                        {
+                          "id": "CHAIRLOVER30",
+                          "title": "Chair Lover Special",
+                          "discount_percentage": 30,
+                          "condition": "สามารถใช้ได้กับเก้าอี้ทุกรุ่น",
+                          "applicable_category": ["เก้าอี้"],
+                          "valid_from": "2024-11-01",
+                          "valid_until": "2026-12-31",
+                          "usage_limit": 100,
+                          "status": "active"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products": {
+      "post": {
+        "tags": ["products"],
+        "summary": "get_products",
+        "description": "Retrieve comprehensive furniture product catalog with Thai names and descriptions.\n\n**Product Information:**\n- Unique product IDs (format: FU-XXX)\n- Thai product names and descriptions\n- Material specifications\n- Pricing in Thai Baht (THB)\n- Product categories\n\n**Available Categories:**\n- **โต๊ะ (Tables):** Work desks, coffee tables, vanity tables\n- **เก้าอี้ (Chairs):** Office chairs, dining chairs, accent chairs\n- **ตู้ (Cabinets):** Wardrobes, display cabinets\n- **โซฟา (Sofas):** Living room sofas\n- **ชั้น (Shelves):** Bookshelves and storage\n- **เตียง (Beds):** Bedroom furniture",
+        "operationId": "get_all_products_products_post",
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved product catalog",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductsResponse"
+                },
+                "examples": {
+                  "sample_products": {
+                    "summary": "Sample product data",
+                    "value": {
+                      "products": [
+                        {
+                          "id": "FU-001",
+                          "name": "โต๊ะมอนิกา",
+                          "category": "โต๊ะ",
+                          "description": "โต๊ะทำงาน/โต๊ะอ่านหนังสือ ไม้โอ๊ค",
+                          "price": 12500
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orders/status": {
+      "post": {
+        "tags": ["orders"],
+        "summary": "get_status",
+        "description": "Retrieve current status of all furniture orders with detailed tracking information.\n\n**Order Information:**\n- Furniture details and quantities\n- Order placement dates\n- Delivery locations across Thailand\n- Real-time status updates\n\n**Order Status Types:**\n- **delivered:** Order successfully delivered\n- **pending:** Order confirmed, awaiting processing\n- **processing:** Order being prepared for shipment\n- **cancelled:** Order cancelled by customer or system\n- **shipped:** Order dispatched for delivery",
+        "operationId": "get_order_status_orders_status_post",
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved order status information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderStatusResponse"
+                },
+                "examples": {
+                  "sample_orders": {
+                    "summary": "Sample order status data",
+                    "value": {
+                      "orders": [
+                        {
+                          "furniture_id": "FU-009",
+                          "furniture_name": "เก้าอี้รับประทานอาหารซอฟี",
+                          "quantity": 1,
+                          "order_date": "2024-12-11",
+                          "location": "เพชรบุรี",
+                          "status": "delivered"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Promotion": {
+        "type": "object",
+        "required": ["id", "title", "condition", "valid_from", "valid_until", "usage_limit", "status"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique promotion code identifier",
+            "example": "CHAIRLOVER30",
+            "pattern": "^[A-Z0-9]+$"
+          },
+          "title": {
+            "type": "string",
+            "description": "Human-readable promotion title",
+            "example": "Chair Lover Special",
+            "maxLength": 100
+          },
+          "discount_percentage": {
+            "type": "integer",
+            "nullable": true,
+            "description": "Percentage discount (1-100)",
+            "example": 30,
+            "minimum": 1,
+            "maximum": 100
+          },
+          "discount_amount": {
+            "type": "integer",
+            "nullable": true,
+            "description": "Fixed discount amount in Thai Baht",
+            "example": 5000,
+            "minimum": 1
+          },
+          "condition": {
+            "type": "string",
+            "description": "Promotion terms and conditions in Thai",
+            "example": "สามารถใช้ได้กับเก้าอี้ทุกรุ่น",
+            "maxLength": 500
+          },
+          "applicable_category": {
+            "type": "array",
+            "nullable": true,
+            "description": "Product categories eligible for this promotion",
+            "items": {
+              "type": "string",
+              "enum": ["โต๊ะ", "เก้าอี้", "ตู้", "โซฟา", "ชั้น", "เตียง"]
+            },
+            "example": ["เก้าอี้"]
+          },
+          "applicable_products": {
+            "type": "array",
+            "nullable": true,
+            "description": "Specific product IDs eligible for this promotion",
+            "items": {
+              "type": "string",
+              "pattern": "^FU-[0-9]{3}$"
+            },
+            "example": ["FU-012"]
+          },
+          "valid_from": {
+            "type": "string",
+            "format": "date",
+            "description": "Promotion start date (ISO 8601)",
+            "example": "2024-11-01"
+          },
+          "valid_until": {
+            "type": "string",
+            "format": "date",
+            "description": "Promotion end date (ISO 8601)",
+            "example": "2026-12-31"
+          },
+          "usage_limit": {
+            "type": "integer",
+            "description": "Maximum number of times this promotion can be used",
+            "example": 100,
+            "minimum": 1
+          },
+          "status": {
+            "type": "string",
+            "description": "Current promotion status",
+            "enum": ["active", "inactive", "expired"],
+            "example": "active"
+          },
+          "min_quantity": {
+            "type": "integer",
+            "nullable": true,
+            "description": "Minimum quantity required for bundle promotions",
+            "example": 3,
+            "minimum": 1
+          }
+        }
+      },
+      "PromotionsResponse": {
+        "type": "object",
+        "required": ["promotions"],
+        "properties": {
+          "promotions": {
+            "type": "array",
+            "description": "List of active furniture promotions",
+            "items": {
+              "$ref": "#/components/schemas/Promotion"
+            }
+          }
+        }
+      },
+      "Product": {
+        "type": "object",
+        "required": ["id", "name", "category", "description", "price"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique product identifier",
+            "example": "FU-001",
+            "pattern": "^FU-[0-9]{3}$"
+          },
+          "name": {
+            "type": "string",
+            "description": "Product name in Thai",
+            "example": "โต๊ะมอนิกา",
+            "maxLength": 100
+          },
+          "category": {
+            "type": "string",
+            "description": "Product category in Thai",
+            "enum": ["โต๊ะ", "เก้าอี้", "ตู้", "โซฟา", "ชั้น", "เตียง"],
+            "example": "โต๊ะ"
+          },
+          "description": {
+            "type": "string",
+            "description": "Detailed product description including materials and intended use",
+            "example": "โต๊ะทำงาน/โต๊ะอ่านหนังสือ ไม้โอ๊ค",
+            "maxLength": 500
+          },
+          "price": {
+            "type": "integer",
+            "description": "Product price in Thai Baht (THB)",
+            "example": 12500,
+            "minimum": 1
+          }
+        }
+      },
+      "ProductsResponse": {
+        "type": "object",
+        "required": ["products"],
+        "properties": {
+          "products": {
+            "type": "array",
+            "description": "List of furniture products in catalog",
+            "items": {
+              "$ref": "#/components/schemas/Product"
+            }
+          }
+        }
+      },
+      "OrderStatus": {
+        "type": "object",
+        "required": ["furniture_id", "furniture_name", "quantity", "order_date", "location", "status"],
+        "properties": {
+          "furniture_id": {
+            "type": "string",
+            "description": "ID of the ordered furniture item",
+            "example": "FU-009",
+            "pattern": "^FU-[0-9]{3}$"
+          },
+          "furniture_name": {
+            "type": "string",
+            "description": "Name of the ordered furniture in Thai",
+            "example": "เก้าอี้รับประทานอาหารซอฟี",
+            "maxLength": 100
+          },
+          "quantity": {
+            "type": "integer",
+            "description": "Number of items ordered",
+            "example": 1,
+            "minimum": 1
+          },
+          "order_date": {
+            "type": "string",
+            "format": "date",
+            "description": "Date when the order was placed (ISO 8601)",
+            "example": "2024-12-11"
+          },
+          "location": {
+            "type": "string",
+            "description": "Delivery location (Thai province/city)",
+            "example": "เพชรบุรี",
+            "maxLength": 100
+          },
+          "status": {
+            "type": "string",
+            "description": "Current order status",
+            "enum": ["delivered", "pending", "cancelled", "processing", "shipped"],
+            "example": "delivered"
+          }
+        }
+      },
+      "OrderStatusResponse": {
+        "type": "object",
+        "required": ["orders"],
+        "properties": {
+          "orders": {
+            "type": "array",
+            "description": "List of furniture orders with current status",
+            "items": {
+              "$ref": "#/components/schemas/OrderStatus"
+            }
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "required": ["detail"],
+        "properties": {
+          "detail": {
+            "type": "string",
+            "description": "Error message describing what went wrong",
+            "example": "Internal server error: Failed to retrieve data"
+          }
+        }
+      }
+    }
+  }
+}

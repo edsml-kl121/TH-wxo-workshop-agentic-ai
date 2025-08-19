@@ -4,6 +4,12 @@
 
 ![alt text](images/agent.png)
 
+with the following description
+
+```
+This agent manages external-facing tasks and client communications, such as sending emails and scheduling meetings via Google services, and placing order for products to store in google sheets. Use it for client coordination and operational support.
+```
+
 2. upload the openapi json file that is provided called `openapi_tools/automation_openapi.json` and add google calendar and send gmail tools.
 
 ![alt text](images/openapi.png)
