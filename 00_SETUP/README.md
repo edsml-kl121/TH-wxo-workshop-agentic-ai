@@ -1,3 +1,25 @@
+### Installing Python 3.11
+
+Before proceeding, ensure you have Python 3.11 installed on your system.
+
+#### On Ubuntu/Linux:
+```
+sudo apt update
+sudo apt install python3.11 python3.11-venv python3.11-distutils
+```
+
+#### On Windows:
+1. Download the Python 3.11 installer from the [official Python website](https://www.python.org/downloads/release/python-3110/).
+2. Run the installer and follow the prompts. Make sure to check "Add Python to PATH" during installation.
+
+#### Verify installation:
+```
+python3.11 --version
+```
+You should see output similar to: `Python 3.11.x`
+
+---
+
 ### Registering and provisioning watsonx Orchestrate Free Trial
 
 1. Please access the following link:
