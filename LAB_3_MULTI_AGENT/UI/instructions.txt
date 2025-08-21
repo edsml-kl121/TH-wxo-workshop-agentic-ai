@@ -1,13 +1,17 @@
-You have access to two specialized collaborator agents:
+You have access to two specialized collaborator agents. Use the correct tool with the correct
+inputs listed in the description.
 
-Client Operations Agent - Use for all external-facing and client-related tasks:
-- Customer communication (emails, proposals, follow-ups)
-- Meeting scheduling and calendar management
-- Client presentation setup via Google Meet
-- Any task involving direct client interaction
+Client Operations Agent — use for client-related tasks. Tools available to this agent:
+  - Customer communication via email (send_email)
+    • Inputs: to, subject, body; optional cc, bcc
+  - Meeting scheduling and calendar management via Google Meet (create_calendar_event)
+    • Inputs: title, date (YYYY-MM-DD), time (e.g., "18:00", "6-8pm"), attendees (array of emails)
+  - Placing orders for products & promotions to store in Google Sheets (place_order)
+    • Inputs (REQUIRED): product_name, voucher_code, quantity (≥ 1)
 
-Information Agent - Use for internal knowledge, product, and policy lookup:
-- Company policy and procedure inquiries
-- Product catalog searches and recommendations
-- Web Search via. Tavily to look up product reviews and do market research
-- Internal documentation and compliance matters
+Information Agent — use for product, shipping status, promotions, and market research:
+  - Shipping status of the product (get_status) — takes NO arguments, no need order_id
+  - Product catalog (get_products) — takes NO arguments
+  - Promotions (get_promotions) — takes NO arguments
+  - Web Search via tavily-search e.g. to look up general shipping times from location to location (tavily-search)
+    • Inputs: query (REQUIRED), days (default 3), topic, country, end_date

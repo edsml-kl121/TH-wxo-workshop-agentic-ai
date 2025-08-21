@@ -1,10 +1,10 @@
 ### Instructions
-1. Please create a new agent. called `sales_multi_agent` and paste the description from `description.txt`
+1. Please create a new agent. called `customer_multi_agent` and paste the description from `description.txt`
 
 ![alt text](images/image.png)
 
 
-2. Switch the model to gemini-flash-2.5 and add the `client-operation-agent` from LAB1 and `information-agent` from LAB2
+2. Switch the model to `virtual-model/gemini-flash-2.5` and add the `client-operation-agent` from LAB1 and `information-agent` from LAB2
 
 ![alt text](images/image-1.png)
 
@@ -14,7 +14,7 @@
 
 3. Now add the instructions from `instructions.txt` to the model's instruction in the behaviour section
 
-![alt text](images/image-4.png)
+![alt text](images/image4.png)
 
 ### Final tests
 #### PART I: ต้องการซื้อเก้าอี้ใหม่จากร้าน 
