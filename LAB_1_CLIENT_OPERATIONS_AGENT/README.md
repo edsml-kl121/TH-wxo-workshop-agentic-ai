@@ -47,6 +47,39 @@ Enabling Gemini API
 Creating Project
 ![alt text](images/create-gcpproject.png)
 
-5. Ensure you have completed the instructions in `00_SETUP`. Now that you have all credentials, please run `set_connections.sh` followed by `add_models.sh` in `AI_gateway/` folder. You should see the model being added.
+
+5. Ensure you have completed the instructions in `00_SETUP`. Now that you have all credentials, add the model as follows:
+
+	**For Linux/macOS:**
+	1. Open a terminal and navigate to the `AI_gateway/` folder.
+	2. Make the scripts executable (run this once):
+		```bash
+		chmod +x set_connections.sh add_models.sh
+		```
+	3. Run the scripts:
+		```bash
+		./set_connections.sh
+		./add_models.sh
+		```
+
+	**For Windows (PowerShell):**
+	1. Open PowerShell and navigate to the `AI_gateway` folder.
+	2. If you haven't already, allow running local scripts:
+		```powershell
+		Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+		```
+		Then restart PowerShell.
+	3. Run the scripts:
+		```powershell
+		./set_connections.ps1
+		./add_models.ps1
+		```
+	4. If you get an error that the script is not digitally signed (i.e., it does not have a trusted publisher's signature and was downloaded or created locally), run the following to unblock the files, then try again:
+		```powershell
+		Unblock-File -Path .\set_connections.ps1
+		Unblock-File -Path .\add_models.ps1
+		```
+
+	You should see the model being added.
 
 ![alt text](images/added_gemini.png)
