@@ -27,3 +27,7 @@ These labs will be completed **during the hands on lab**
 git clone https://github.com/edsml-kl121/TH-wxo-workshop-agentic-ai.git
 cd TH-wxo-workshop-agentic-ai
 ```
+
+Here are backup credentials incase of any issues:
+
+https://ibm.box.com/s/fd1x1cerc8tv20czqfjaz5vhloa6vohl
