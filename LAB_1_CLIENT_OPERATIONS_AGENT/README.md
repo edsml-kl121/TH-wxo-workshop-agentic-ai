@@ -48,7 +48,42 @@ Creating Project
 ![alt text](images/create-gcpproject.png)
 
 
-5. Ensure you have completed the instructions in `00_SETUP`. Now that you have all credentials, add the model as follows:
+5. Ensure you have completed the instructions in `00_SETUP`. Now that you have all credentials, add the model as follows. Choose to follow either UI or ADK.
+
+    ### UI (Simplified instructions)
+
+    Please navigate to the connections tab. And add a connection.
+    ![alt text](images/gateway_1.png)
+
+    Here you can create a connection called `gg_creds_UI`
+
+    ![alt text](images/gateway_2.png)
+
+    For draft environment, select the `Key Value Pair` and add the key value pair in. The key is `api_key` and the value is the API key from Gemini API you got earlier.
+
+    ![alt text](images/gateway_3.png)
+
+    Please repeat the same of live environment,
+    The key is `api_key` and the value is the API key from Gemini API you got earlier.
+    ![alt text](images/gateway_4.png)
+
+    Once added connections, please navigate to your powershell/ terminal and type in the following command. This steps assumed you have completed `00_SETUP`
+
+    Here is the comamnd
+    ```
+    orchestrate models add --name google/gemini-2.5-flash --app-id gg_creds_UI
+    ```
+    You should see gemini-2.5-flash model being added.
+
+    ![alt text](images/added_gemini.png)
+
+    
+    **NOTE**: Additionally, watsonx Orchestrate provides the ability for developers to perform end to end connections creation to adding model with the ADK. Feel free to try this out at home.
+
+    ## End of Labs
+    ---
+
+    ### End to end using ADK (Optional)
 
 	**For Linux/macOS:**
 	1. Open a terminal and navigate to the `AI_gateway/` folder.

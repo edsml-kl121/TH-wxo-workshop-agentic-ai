@@ -13,11 +13,18 @@ sudo apt install python3.11 python3.11-venv python3.11-distutils
 2. Run the installer and follow the prompts. Make sure to check "Add Python to PATH" during installation.
 
 #### Verify installation:
+
+##### Mac
 ```
 python3.11 --version
 ```
 You should see output similar to: `Python 3.11.x`
 
+##### Windows
+
+```
+py -3.11 --version
+```
 ---
 
 ### Registering and provisioning watsonx Orchestrate Free Trial
@@ -52,9 +59,17 @@ Install and create a virtual environment from `requirement.txt`. Ensure your pyt
 
 Run the following command
 
+#### Mac
 ```
 python3.11 -m venv venv
 source venv/bin/activate
+pip install -r requirement.txt
+```
+
+#### Windows (Powershell)
+```
+py -3.11 -m venv venv
+.venv\Scripts\activate
 pip install -r requirement.txt
 ```
 
@@ -67,4 +82,8 @@ orchestrate env add -n trial-env -u <Service instance URL>
 orchestrate env activate trial-env
 (Then enter API Key)
 ```
+
+Alternatively,
+```orchestrate env activate trial-env --api-key <your_APIKEY>```
+
 https://developer.watson-orchestrate.ibm.com/environment/production_import
