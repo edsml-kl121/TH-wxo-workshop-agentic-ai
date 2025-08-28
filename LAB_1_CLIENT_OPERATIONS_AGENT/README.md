@@ -14,9 +14,11 @@ This agent manages external-facing tasks and client communications, such as send
 
 ![alt text](images/openapi.png)
 
+
 You should see that the tools have been added.
 
 ![alt text](images/tools.png)
+
 
 
 3. Please choose `meta-llama/llama-3-405b-instruct` and test the agent with following queries:
