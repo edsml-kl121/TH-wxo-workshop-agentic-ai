@@ -30,7 +30,9 @@ You should see that the tools have been added.
 - ช่วยยิงนัดกับ `replace_with_your_email` หน่อยวันที่ 11 ธันวาคม 2025, 11:00-12:00 ว่า "Self Introduction"
 - ช่วยสั่งสินค้า 'ABC' จำนวน 1 ชิ้น ด้วย voucher ABCD
 
+You can view the results of placed order here:
 
+[Click to see Order placed in sheets](https://docs.google.com/spreadsheets/d/1JVyvsmVnxRarCXDWmyu1_beTxMzkKdXn6O2msz_aaAE/edit?usp=sharing)
 
 To improve the model performance in Thai even further, watsonx Orchestrate supports using external models through feature called `AI gateway`. Read more later at: https://developer.watson-orchestrate.ibm.com/llm/managing_llm
 
