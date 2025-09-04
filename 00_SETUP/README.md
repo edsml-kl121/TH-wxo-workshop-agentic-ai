@@ -69,9 +69,20 @@ pip install -r requirement.txt
 #### Windows (Powershell)
 ```
 py -3.11 -m venv venv
-.venv\Scripts\activate
+venv\Scripts\activate
 pip install -r requirement.txt
 ```
+
+	**For Windows (PowerShell):**
+	If you haven't already, allow running local scripts:
+		```powershell
+		Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+		```
+		Then restart PowerShell.
+	 If you get an error that the script is not digitally signed (i.e., it does not have a trusted publisher's signature and was downloaded or created locally), run the following with the name of the script you want to unblock, then try again:
+		```powershell
+		Unblock-File -Path .\script_name.ps1
+		```
 
 ### Activating watsonx Orchestrate environment
 Assuming your are running watsonx Orchestrate on AWS Cloud (Saas),
