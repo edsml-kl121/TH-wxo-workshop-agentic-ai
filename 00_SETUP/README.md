@@ -73,7 +73,7 @@ venv\Scripts\activate
 pip install -r requirement.txt
 ```
 
-	**For Windows (PowerShell):**
+**For Windows (PowerShell):**
 	If you haven't already, allow running local scripts:
 		```powershell
 		Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
